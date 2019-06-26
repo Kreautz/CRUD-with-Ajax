@@ -21,7 +21,7 @@ Route::get('/dashboard', [
 ]);
 
 
-Route::group(['prefix' => 'dboard'], function () {
+Route::group(['prefix' => 'mahasiswa'], function () {
     Route::get('/dashboard/{id}', [
         'uses' => 'DashboardController@show',
         'as'   => 'mahasiswa.show',
@@ -43,4 +43,4 @@ Route::group(['prefix' => 'dboard'], function () {
     ]);
 });
 
-Route::resource('mahasiswa', 'DashboardController');
+Route::resource('dashboard', 'DashboardController');

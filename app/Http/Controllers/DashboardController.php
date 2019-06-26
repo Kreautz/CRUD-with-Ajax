@@ -15,10 +15,9 @@ class DashboardController extends Controller
      */
     public function index(Request $request)
     {
-        //
-        $mahasiswa = Dashboard::orderBy('id', 'desc')->paginate(5);
+        $mhs = Dashboard::orderBy('id', 'desc')->paginate(5);
 
-        return view('frame')->with('frame', $mahasiswa);
+        return view('frame')->with('mahasiswa', $mhs);
     }
 
     /**
@@ -28,8 +27,7 @@ class DashboardController extends Controller
      */
     public function create()
     {
-        //
-        return view('dashboard.create');
+        //return view('dashboard.create');
     }
 
     /**
@@ -40,7 +38,6 @@ class DashboardController extends Controller
      */
     public function store(Request $request)
     {
-        //
         /*$request->validate([
             'name' => 'required'
         ]);
