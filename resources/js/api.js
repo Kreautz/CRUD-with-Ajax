@@ -120,11 +120,6 @@ $(document).ready(function() {
             }
         });
     });
-    /*$("#addmhsForm").click(function() {
-        event.preventDefault();
-        $("#add-error-bag").hide();
-        $('#addModal').modal('show');
-    });*/
 });
 
 function addmhsForm() {
