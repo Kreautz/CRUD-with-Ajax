@@ -21,12 +21,12 @@
                     </div>
                     <div class="form-group">
                         <label for="alamat">Alamat:</label>
-                        <textarea type="text" class="form-control" name="alamat" id="alamat"/>
+                        <input type="text" class="form-control" name="alamat" id="alamat">
                     </div>
                     <div class="form-group">
                         <label for="fakultas">Fakultas:</label>
-                        <select type="text" class="form-control" name="fakultas" id="fakultas">
-                            <option value="42" selected>FMIPA</option>
+                        <select type="text" class="form-control" name="fakultas" id="fakultas" disabled>
+                            <option value="42">FMIPA</option>
                             <option value="41">FKH</option>
                         </select>
                     </div>

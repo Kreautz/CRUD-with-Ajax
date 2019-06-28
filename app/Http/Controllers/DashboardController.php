@@ -17,7 +17,7 @@ class DashboardController extends Controller
     {
         $mhs = Dashboard::orderBy('id', 'desc')->paginate(5);
 
-        return view('frame')->with('mahasiswa', $mhs);
+        return view('sbadmin')->with('mahasiswa', $mhs);
     }
 
     /**
@@ -50,7 +50,48 @@ class DashboardController extends Controller
         $dashboard->save();
         return redirect('/')->with('success','new mahasiswa registered!');*/
 
+        $id = 0;
+        $id++;
+
+        $d = new Date();
+        $d = d.toString("yy");
+
+        $fmipa = 0;
+        $fkh = 0;
+        $lastNumber = 0;
+        $fk = $request->input('fakultas');
+        if($fk == 'FMIPA'){
+            $fmipa++;
+            $fk = 42;
+            if($fmipa < 10){
+                $fmipa="00". $fmipa;
+                $lastNumber = $fmipa;
+            }else if($fmipa < 100){
+                $fmipa="0" . $fmipa;
+                $lastNumber = $fmipa;
+            }else{
+                $fmipa = $fmipa;
+                $lastNumber = $fmipa;
+            }
+        }else{
+            $fkh++;
+            $fk = 41;
+            if($fkh < 10){
+                $fkh="00". $fkh;
+                $lastNumber = $fkh;
+            }else if($fkh < 100){
+                $fkh="0" . $fkh;
+                $lastNumber = $fkh;
+            }else{
+                $fkh = $fkh;
+                $lastNumber = $fkh;
+            }
+        }
+
+        $nim = $d . $fk . "101" . $lastNumber;
+
         $validator = Validator::make($request->input(), array(
+            'nim' => $nim,
             'nama' => 'required',
             'alamat' => 'required',
             'fakultas' => 'required',
@@ -67,7 +108,7 @@ class DashboardController extends Controller
 
         return response()->json([
             'error' => false,
-            'nama'  => $mahasiswa,
+            'mhs'  => $mahasiswa,
         ], 200);
     }
 
@@ -84,7 +125,7 @@ class DashboardController extends Controller
 
         return response()->json([
             'error' => false,
-            'nama'  => $mahasiswa,
+            'mhs'  => $mahasiswa,
         ], 200);
     }
 
@@ -132,7 +173,7 @@ class DashboardController extends Controller
 
         return response()->json([
             'error' => false,
-            'nama'  => $mahasiswa,
+            'mhs'  => $mahasiswa,
         ], 200);
     }
 
@@ -149,7 +190,7 @@ class DashboardController extends Controller
 
         return response()->json([
             'error' => false,
-            'nama'  => $mahasiswa,
+            'mhs'  => $mahasiswa,
         ], 200);
     }
 }

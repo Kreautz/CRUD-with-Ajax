@@ -1,13 +1,11 @@
 $(document).ready(function() {
-
-
     $("#btn-add").click(function() {
         $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
         });
-        var id = 0;
+        /*var id = 0;
         id++;
 
         var d = new Date();
@@ -43,19 +41,20 @@ $(document).ready(function() {
                 fkh = fkh;
                 lastNumber = fkh;
             }
-        }
+        }*/
 
-        var nim = d + fk + "101" + lastNumber;
+        /*var nim = d + fk + "101" + lastNumber;*/
+        var nama = $("#addform input[name=nama]").val();
+        var alamat = $("#addform input[name=alamat]").val();
+        var fakultas = $("#fakultas option:selected").val();
 
         $.ajax({
             type: 'POST',
-            url: '/frame',
+            url: '/dashboard/',
             data: {
-
-                nim,
-                nama: $("#addform input[name=nama]").val(),
-                alamat: $("#addform input[name=alamat]").val(),
-                fakultas: $("#fakultas option:selected").val(),
+                nama: nama,
+                alamat: alamat,
+                fakultas: fakultas,
             },
             dataType: 'json',
             success: function(data) {
@@ -81,7 +80,7 @@ $(document).ready(function() {
         });
         $.ajax({
             type: 'PUT',
-            url: '/frame/' + $("#editform input[name=id]").val(),
+            url: '/dashboard/' + $("#editform input[name=id]").val(),
             data: {
                 nama: $("#addform input[name=nama]").val(),
                 alamat: $("#addform input[name=alamat]").val(),
@@ -111,7 +110,7 @@ $(document).ready(function() {
         });
         $.ajax({
             type: 'DELETE',
-            url: '/frame/' + $("#delform input[name=id]").val(),
+            url: '/dashboard/' + $("#delform input[name=id]").val(),
             dataType: 'json',
             success: function(data) {
                 $("#delform .close").click();
@@ -131,7 +130,7 @@ $(document).ready(function() {
 
 function addmhsForm() {
     $(document).ready(function() {
-        event.preventDefault();
+        /*event.preventDefault();*/
         $("#add-error-bag").hide();
         $('#addModal').modal('show');
     });

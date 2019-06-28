@@ -15,31 +15,31 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/dashboard', [
+/*Route::get('/dashboard', [
     'uses' => 'DashboardController@index',
-    'as' => 'mahasiswa.index',
-]);
+    'as' => 'dashboard.index',
+]);*/
 
 
-Route::group(['prefix' => 'mahasiswa'], function () {
+Route::group(['prefix' => 'dashboard'], function () {
     Route::get('/dashboard/{id}', [
         'uses' => 'DashboardController@show',
-        'as'   => 'mahasiswa.show',
+        'as'   => 'dashboard.show',
     ]);
 
     Route::post('/dashboard/', [
         'uses' => 'DashboardController@store',
-        'as'   => 'mahasiswa.store',
+        'as'   => 'dashboard.store',
     ]);
 
     Route::put('/dashboard/{id}', [
         'uses' => 'DashboardController@update',
-        'as'   => 'mahasiswa.update',
+        'as'   => 'dashboard.update',
     ]);
 
     Route::delete('/dashboard/{id}', [
         'uses' => 'DashboardController@destroy',
-        'as'   => 'mahasiswa.destroy',
+        'as'   => 'dashboard.destroy',
     ]);
 });
 

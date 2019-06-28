@@ -12,7 +12,8 @@
                  </div>
                  <div class="modal-body">
                      <div class="alert alert-danger" id="add-error-bag">
-                         <ul id="add-errors"/>
+                         <ul id="add-errors">
+                         </ul>
                      </div>
                      <div class="form-group">
                          <label for="nama">Nama:</label>
@@ -20,7 +21,7 @@
                      </div>
                      <div class="form-group">
                          <label for="alamat">Alamat:</label>
-                         <textarea type="text" class="form-control" name="alamat" id="alamat"/>
+                         <input type="text" class="form-control" name="alamat" id="alamat">
                      </div>
                      <div class="form-group">
                          <label for="fakultas">Fakultas:</label>
