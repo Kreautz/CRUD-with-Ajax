@@ -27,7 +27,7 @@ class DashboardController extends Controller
      */
     public function create()
     {
-        //return view('dashboard.create');
+        return view('dashboard.create');
     }
 
     /**
@@ -50,6 +50,8 @@ class DashboardController extends Controller
         $dashboard->save();
         return redirect('/')->with('success','new mahasiswa registered!');*/
 
+        /*dd($request->all());*/
+
         $id = 0;
         $id++;
 
@@ -59,7 +61,7 @@ class DashboardController extends Controller
         $fmipa = 0;
         $fkh = 0;
         $lastNumber = 0;
-        $fk = $request->input('fakultas');
+        $fk = $request->get('fakultas');
         if($fk == 'FMIPA'){
             $fmipa++;
             $fk = 42;
@@ -89,12 +91,13 @@ class DashboardController extends Controller
         }
 
         $nim = $d . $fk . "101" . $lastNumber;
+        $request->input($nim);
 
         $validator = Validator::make($request->input(), array(
-            'nim' => $nim,
+            /*'nim' => $nim,
             'nama' => 'required',
             'alamat' => 'required',
-            'fakultas' => 'required',
+            'fakultas' => 'required',*/
         ));
 
         if ($validator->fails()) {
@@ -104,7 +107,8 @@ class DashboardController extends Controller
             ], 422);
         }
 
-        $mahasiswa = Dashboard::create($request->all());
+        $data = $request->all();
+        $mahasiswa = Dashboard::create($data);
 
         return response()->json([
             'error' => false,
@@ -149,11 +153,11 @@ class DashboardController extends Controller
      */
     public function update(Request $request, $id)
     {
+        /*dd($request->all());*/
         //
         $validator = Validator::make($request->input(), array(
-            'nama' => 'required',
-            'alamat' => 'required',
-            'fakultas' => 'required',
+            /*'nama' => 'required',
+            'alamat' => 'required',*/
         ));
 
         if ($validator->fails()) {
@@ -165,9 +169,9 @@ class DashboardController extends Controller
 
         $mahasiswa = Dashboard::find($id);
 
-        $mahasiswa->nama          = $request->input('nama');
-        $mahasiswa->alamat        = $request->input('alamat');
-        $mahasiswa->fakultas      = $request->input('fakultas');
+        $mahasiswa->nama          = $request->get('nama');
+        $mahasiswa->alamat        = $request->get('alamat');
+        /*$mahasiswa->fakultas      = $request->get('fakultas');*/
 
         $mahasiswa->save();
 

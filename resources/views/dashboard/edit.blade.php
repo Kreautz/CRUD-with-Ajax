@@ -17,19 +17,20 @@
                     </div>
                     <div class="form-group">
                         <label for="nama">Nama:</label>
-                        <input type="text" class="form-control" name="nama" id="nama"/>
+                        <input type="text" class="form-control" name="nama" id="enama"/>
                     </div>
                     <div class="form-group">
                         <label for="alamat">Alamat:</label>
-                        <input type="text" class="form-control" name="alamat" id="alamat">
+                        <input type="text" class="form-control" name="alamat" id="ealamat">
                     </div>
                     <div class="form-group">
                         <label for="fakultas">Fakultas:</label>
-                        <select type="text" class="form-control" name="fakultas" id="fakultas" disabled>
+                        <select type="text" class="form-control" name="fakultas" id="cfakultas" disabled>
                             <option value="42">FMIPA</option>
                             <option value="41">FKH</option>
                         </select>
                     </div>
+                    <input type="hidden" name="token" value="{{ Session::token() }}">
                 </div>
                 <div class="modal-footer">
                     <input id="id" name="id" type="hidden" value="0">

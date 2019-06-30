@@ -17,15 +17,15 @@
                      </div>
                      <div class="form-group">
                          <label for="nama">Nama:</label>
-                         <input type="text" class="form-control" name="nama" id="nama"/>
+                         <input type="text" class="form-control" name="nama" id="cnama"/>
                      </div>
                      <div class="form-group">
                          <label for="alamat">Alamat:</label>
-                         <input type="text" class="form-control" name="alamat" id="alamat">
+                         <input type="text" class="form-control" name="alamat" id="calamat">
                      </div>
                      <div class="form-group">
                          <label for="fakultas">Fakultas:</label>
-                         <select type="text" class="form-control" name="fakultas" id="fakultas">
+                         <select type="text" class="form-control" name="fakultas" id="cfakultas">
                              <option value="FMIPA" selected>FMIPA</option>
                              <option value="FKH">FKH</option>
                          </select>
@@ -38,6 +38,7 @@
                      </button>
                      </input>
                  </div>
+                 <input type="hidden" name="token" value="{{ Session::token() }}">
              </form>
          </div>
      </div>

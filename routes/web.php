@@ -15,10 +15,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-/*Route::get('/dashboard', [
+Route::get('/dashboard', [
     'uses' => 'DashboardController@index',
     'as' => 'dashboard.index',
-]);*/
+]);
 
 
 Route::group(['prefix' => 'dashboard'], function () {
@@ -32,7 +32,7 @@ Route::group(['prefix' => 'dashboard'], function () {
         'as'   => 'dashboard.store',
     ]);
 
-    Route::put('/dashboard/{id}', [
+    Route::put('/dashboard/{id}/update', [
         'uses' => 'DashboardController@update',
         'as'   => 'dashboard.update',
     ]);
@@ -43,4 +43,4 @@ Route::group(['prefix' => 'dashboard'], function () {
     ]);
 });
 
-Route::resource('dashboard', 'DashboardController');
+/*Route::resource('dashboard', 'DashboardController');*/

@@ -44,17 +44,18 @@ $(document).ready(function() {
         }*/
 
         /*var nim = d + fk + "101" + lastNumber;*/
-        var nama = $("#addform input[name=nama]").val();
+        /*var nama = $("#addform input[name=nama]").val();
         var alamat = $("#addform input[name=alamat]").val();
         var fakultas = $("#fakultas option:selected").val();
+        var token = $('input[name=_token]').val();*/
 
         $.ajax({
             type: 'POST',
-            url: '/dashboard/',
+            url: '/dashboard/dashboard/',
             data: {
-                nama: nama,
-                alamat: alamat,
-                fakultas: fakultas,
+                nama: $("#cnama").val(),
+                alamat: $("#calamat").val(),
+                fakultas: $("#cfakultas option:selected").val(),
             },
             dataType: 'json',
             success: function(data) {
@@ -63,12 +64,14 @@ $(document).ready(function() {
                 window.location.reload();
             },
             error: function(data) {
-                var errors = $.parseJSON(data.responseText);
-                $('#add-errors').html('');
-                $.each(errors.messages, function(key, value) {
-                    $('#add-errors').append('<li>' + value + '</li>');
-                });
-                $("#add-error-bag").show();
+                if (data.status === 422){
+                    var errors = $.parseJSON(data.responseText);
+                    $('#add-errors').html('');
+                    $.each(errors.messages, function(key, value) {
+                        $('#add-errors').append('<li>' + value + '</li>');
+                    });
+                    $("#add-error-bag").show();
+                }
             }
         });
     });
@@ -80,11 +83,11 @@ $(document).ready(function() {
         });
         $.ajax({
             type: 'PUT',
-            url: '/dashboard/' + $("#editform input[name=id]").val(),
+            url: '/dashboard/dashboard/' + $("#editform input[name=id]").val()+'/update' ,
             data: {
-                nama: $("#addform input[name=nama]").val(),
-                alamat: $("#addform input[name=alamat]").val(),
-                fakultas: $("#fakultas option:selected").val(),
+                nama: $("#enama").val(),
+                alamat: $("#ealamat").val(),
+                /*fakultas: $("#efakultas option:selected").val(),*/
             },
             dataType: 'json',
             success: function(data) {
@@ -93,12 +96,19 @@ $(document).ready(function() {
                 window.location.reload();
             },
             error: function(data) {
-                var errors = $.parseJSON(data.responseText);
-                $('#edit-errors').html('');
+                if (data.status === 422) {
+                    var errors = $.parseJSON(data.responseText);
+                    $('#edit-errors').html('');
+                    $.each(errors.messages, function(key, value) {
+                        $('#edit-errors').append('<li>' + value + '</li>');
+                    });
+                    $("#edit-error-bag").show();
+                }
+                /*$('#edit-errors').html('');
                 $.each(errors.messages, function(key, value) {
                     $('#edit-errors').append('<li>' + value + '</li>');
                 });
-                $("#edit-error-bag").show();
+                $("#edit-error-bag").show();*/
             }
         });
     });
@@ -139,12 +149,12 @@ function addmhsForm() {
 function editmhsForm(id) {
     $.ajax({
         type: 'GET',
-        url: '/dashboard/' + id,
+        url: '/dashboard/dashboard/' + id,
         success: function(data) {
             $("#edit-error-bag").hide();
-            $("#editform input[name=nama]").val(data.mhs.nama);
-            $("#editform input[name=alamat]").val(data.mhs.alamat);
-            $("#fakultas option:selected").val(data.mhs.fakultas);
+            $("#enama input[name=nama]").val(data.mhs.nama);
+            $("#ealamat input[name=alamat]").val(data.mhs.alamat);
+            $("#efakultas option:selected").val(data.mhs.fakultas);
             $("#editform input[name=id]").val(data.mhs.id);
             $('#editModal').modal('show');
         },
