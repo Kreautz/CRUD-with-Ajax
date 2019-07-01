@@ -94,10 +94,10 @@ class DashboardController extends Controller
         $request->input($nim);
 
         $validator = Validator::make($request->input(), array(
-            /*'nim' => $nim,
+            /*'nim' => $nim,*/
             'nama' => 'required',
             'alamat' => 'required',
-            'fakultas' => 'required',*/
+            'fakultas' => 'required',
         ));
 
         if ($validator->fails()) {
@@ -156,8 +156,8 @@ class DashboardController extends Controller
         /*dd($request->all());*/
         //
         $validator = Validator::make($request->input(), array(
-            /*'nama' => 'required',
-            'alamat' => 'required',*/
+            'nama' => 'required',
+            'alamat' => 'required',
         ));
 
         if ($validator->fails()) {
