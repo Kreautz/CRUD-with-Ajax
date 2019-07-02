@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Dashboard;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Carbon\Carbon;
 
 class DashboardController extends Controller
 {
@@ -55,8 +56,14 @@ class DashboardController extends Controller
         $id = 0;
         $id++;
 
-        $d = new Date();
-        $d = d.toString("yy");
+        $time = "2019-01-01 00:00:00";
+        $date = new Carbon( $time );
+        $d = $date->format('Y');
+
+        /*$d = new date('Y', strtotime(Dashboard::getDates()));*/
+
+        /*$d = new Date();
+        $d = $d.toString("yy");*/
 
         $fmipa = 0;
         $fkh = 0;
@@ -91,7 +98,6 @@ class DashboardController extends Controller
         }
 
         $nim = $d . $fk . "101" . $lastNumber;
-        $request->input($nim);
 
         $validator = Validator::make($request->input(), array(
             /*'nim' => $nim,*/
@@ -107,13 +113,25 @@ class DashboardController extends Controller
             ], 422);
         }
 
-        $data = $request->all();
-        $mahasiswa = Dashboard::create($data);
+        /*$data = [
+            $request->input($nim),
+            $request->all()
+        ];*/
+        /*$mahasiswa = Dashboard::create(array_merge($request->all(), ['nim' => $nim]));*/
+        /*$mahasiswa = Dashboard::create($request->all() + ['nim' => $nim]);*/
 
-        return response()->json([
+        $dashboard = new Dashboard();
+        $dashboard->nama = $request->nama;
+        $dashboard->alamat = $request->alamat;
+        $dashboard->fakultas = $request->fakultas;
+        $dashboard->nim = $nim;
+        $dashboard->save();
+
+
+        /*return response()->json([
             'error' => false,
             'mhs'  => $mahasiswa,
-        ], 200);
+        ], 200);*/
     }
 
     /**
